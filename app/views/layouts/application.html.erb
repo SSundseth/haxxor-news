@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HaxxorNews</title>
+  <title>Haxxor News</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-  <h1><%= link_to 'Haxxor News', stories_path %></h1>
-<%= yield %>
+
+  <div class="head", style="left-margin:50px; right-margin:50px">
+    <table>
+      <tr>
+        <td style="width:200px; text-align:center">
+          <h3><%= link_to 'Haxxor News', stories_path %></h3>
+        </td>
+        <td style="text-align:right">
+          <%= link_to 'submit', new_story_path %>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <%= yield %>
 
 </body>
 </html>
