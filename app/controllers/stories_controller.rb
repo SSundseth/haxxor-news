@@ -7,9 +7,9 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(params[:story])
     if @story.save
-      redirect_to @story
+      redirect_to :action => "index" 
     else
-      render 'new'
+      redirect_to :action => "new", :notice => "Invalid Submission"
     end
   end
              
