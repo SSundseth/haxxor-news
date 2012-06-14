@@ -9,11 +9,11 @@
 
 <body>
 
-  <div class="head", style="left-margin:50px; right-margin:50px">
+  <div class="head">
     <table>
       <tr>
-        <td style="width:200px; text-align:center">
-          <h3><%= link_to 'Haxxor News', stories_path %></h3>
+        <td style="width:300px; text-align:center">
+          <h2><%= link_to 'Haxxor News', stories_path %></h2>
         </td>
         <td style="text-align:right">
           <%= link_to 'submit', new_story_path %>
@@ -21,8 +21,10 @@
       </tr>
     </table>
   </div>
-
-  <%= yield %>
+  
+  <div class="content">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

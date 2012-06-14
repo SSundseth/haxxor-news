@@ -11,3 +11,47 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+  background-color:#99FFFF;
+  margin-left: 10%;
+  margin-right:20%;
+}
+
+.head { 
+  text-decoration:none; 
+  background-color:#6633FF;
+  text-color:#009900;
+  font-family:Courier, monospace;
+}
+
+.head a:link, a:visited {
+  text-decoration:none;
+  color:#000000;
+}
+
+.content {
+  font-family: 'Arial';
+  padding:10px
+}
+
+.content a:link {
+  color:#00F;
+  text-decoration:none;
+}
+
+.content a:hover {
+  text-decoration:underline;
+}
+
+.content a:visited {
+  color:#922
+}
+
+.story {
+  padding:10px;
+}
+
+.info {
+  font-size:8pt;
+}
