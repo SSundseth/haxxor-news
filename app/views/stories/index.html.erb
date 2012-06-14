@@ -1,0 +1,8 @@
+<% @stories.reverse.each do |story| %>
+  <div class="story">
+    <%= link_to story.title, story.url %>
+    <div class="info">
+      Submitted on <%= story.created_at.strftime("%D at %l:%M%p") %>
+    </div>      
+  </div>
+<% end %>
