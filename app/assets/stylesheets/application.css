@@ -20,14 +20,13 @@ body {
 
 .head { 
   text-decoration:none; 
-  background-color:#6633FF;
-  text-color:#009900;
+  background-color:#66CCFF;
   font-family:Courier, monospace;
 }
 
 .head a:link, a:visited {
   text-decoration:none;
-  color:#000000;
+  color:#FF3300;
 }
 
 .content {
