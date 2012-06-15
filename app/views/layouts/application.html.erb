@@ -8,6 +8,9 @@
 </head>
 
 <body>
+  <% flash.each do |key, value| -%>
+    <div class="flash <%= key %>"><%= value%></div>
+  <% end -%>
 
   <div class="head">
     <table>
@@ -15,9 +18,30 @@
         <td style="width:300px; text-align:center">
           <h2><%= link_to 'Haxxor News', stories_path %></h2>
         </td>
-        <td style="text-align:right">
-          <%= link_to 'submit', new_story_path %>
-        </td>
+
+        <% if signed_in? %>
+
+          <td style="text-align:center; width:100px">
+            <%= link_to 'submit', new_story_path %>
+          </td>
+          
+          <td style="text-align:center; width:100px">
+            <%= current_user.email %>
+          </td>
+
+          <td style="text-align:center; width:100px">
+            <%= link_to "Logout", sign_out_path, :method => :delete %>
+          </td>
+
+        <% else %>
+
+          <td style="text-align:center; width:100px">
+            <%= link_to "Login", sign_in_path %>
+          </td>
+
+          <td style="text-align:center; width:100px">
+            <%= link_to "Sign Up", sign_up_path %>
+        <% end %>
       </tr>
     </table>
   </div>
