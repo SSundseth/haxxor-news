@@ -5,5 +5,6 @@ class Story < ActiveRecord::Base
   validates :url, :presence => true
   validates :url, :format => { :with => /http:\/\/*/ }
 
+
   scope :reverse_all, :order => "id DESC"
 end
