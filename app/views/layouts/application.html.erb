@@ -13,7 +13,7 @@
   <% end -%>
 
   <div class="head">
-    <table>
+    <table border="1">
       <tr>
         <td style="width:300px; text-align:left">
           <h2><%= link_to 'Haxxor News', stories_path %></h2>
@@ -21,25 +21,25 @@
 
         <% if signed_in? %>
 
-          <td style="align:right; width:100px">
+          <td style="width:100px">
             <%= link_to 'submit', new_story_path %>
           </td>
           
-          <td style="align:right; width:100px">
+          <td style="float:right; width:100px">
             <%= current_user.email %>
           </td>
 
-          <td style="align:right; width:100px">
+          <td style="float:right; width:100px">
             <%= link_to "Logout", sign_out_path, :method => :delete %>
           </td>
 
         <% else %>
 
-          <td style="align:right; width:100px">
+          <td style="float:right; width:100px">
             <%= link_to "Login", sign_in_path %>
           </td>
 
-          <td style="align:right; width:100px">
+          <td style="float:right; width:100px">
             <%= link_to "Sign Up", sign_up_path %>
         <% end %>
       </tr>
