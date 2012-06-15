@@ -1,7 +1,7 @@
 <% Story.reverse_all.each do |story| %>
 
   <div class="story">
-    <%= link_to story.title, story.url %>
+    <%= link_to story.title, story.url %><font size="8pt">(<%= story.url %>)</font>
     <div class="info">
       Submitted on <%= story.created_at.strftime("%D at %l:%M%p") %>
     </div>      
