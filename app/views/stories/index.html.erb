@@ -1,7 +1,7 @@
 <% Story.chrono.each do |story| %>
 
   <div class="story">
-    <%= link_to story.title, story.url %> <font size="-2">(<%= story.url %>)</font>
+    <%= link_to story.title, story.url %> <span class="url">(<%= story.url %>)</span>
     <div class="info">
       Submitted on <%= story.created_at.to_s(:custom_date) %>
     </div>      

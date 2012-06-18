@@ -9,10 +9,10 @@ describe Story do
     it { should validate_presence_of(:url) }
   end
 
-  it 'url should begin with http://' do
-    subject = described_class.new(:url => 'url.com', :title => 'title')
+  it 'should begin with http:// or http://' do
+    subject = FactoryGirl.build(:story, :url => 'url.com')
     subject.should be_invalid
-    subject.errors[:url].should == ["is invalid"]
+    subject.errors[:url].should == ["must begin with http:// or https://"]
   end
 end
 
