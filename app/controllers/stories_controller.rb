@@ -9,7 +9,7 @@ class StoriesController < ApplicationController
     if @story.save
       redirect_to stories_url
     else
-      redirect_to new_story_url
+      render :new
     end
   end
              

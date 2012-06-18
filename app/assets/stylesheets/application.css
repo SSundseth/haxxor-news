@@ -55,3 +55,7 @@ body {
 .info {
   font-size:8pt;
 }
+
+.error {
+  color:red;
+}
