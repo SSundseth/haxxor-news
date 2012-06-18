@@ -3,7 +3,7 @@
   <div class="story">
     <%= link_to story.title, story.url %> <font size="-2">(<%= story.url %>)</font>
     <div class="info">
-      Submitted on <%= story.created_at.strftime("%D at %l:%M%p") %>
+      Submitted on <%= story.created_at.to_s(:custon_date) %>
     </div>      
   </div>
 <% end %>
