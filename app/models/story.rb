@@ -4,5 +4,5 @@ class Story < ActiveRecord::Base
   validates_presence_of :title, :url
   validates :url, :format => { :with => /http:\/\/*/ }
 
-  scope :reverse_all, :order => "id DESC"
+  scope :chrono, :order => "created_at DESC"
 end
