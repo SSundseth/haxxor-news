@@ -1,4 +1,4 @@
-<% Story.reverse_all.each do |story| %>
+<% Story.chrono.each do |story| %>
 
   <div class="story">
     <%= link_to story.title, story.url %> <font size="-2">(<%= story.url %>)</font>
