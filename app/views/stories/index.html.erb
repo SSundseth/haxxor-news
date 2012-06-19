@@ -1,8 +1,9 @@
-<% @stories.reverse.each do |story| %>
+<% Story.chrono.each do |story| %>
+
   <div class="story">
-    <%= link_to story.title, story.url %>
+    <%= link_to story.title, story.url %> <span class="url">(<%= story.url %>)</span>
     <div class="info">
-      Submitted on <%= story.created_at.strftime("%D at %l:%M%p") %>
+      Submitted on <%= story.created_at.to_s(:custom_date) %>
     </div>      
   </div>
 <% end %>

@@ -1,7 +1,21 @@
+<%= form_for @story, :html => { :class => "form" } do |f| %>
+  <% @story.errors.full_messages.each do |msg| %>
+    <div class="error"><%= msg %></div>
+  <% end %>
 
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
 
-<%= form_for @story, :url => { :action => 'create' }, :html => { :class => "form" } do |f| %>
-  <%= f.text_field :title, :placeholder => "Title" %>
-  <%= f.text_field :url, :placeholder => "Url" %>
-  <%= f.submit "Create" %>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <div class="actions">
+      <%= f.submit "Create" %>
+    </div>
+  </div>
 <% end %>
