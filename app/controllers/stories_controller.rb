@@ -14,7 +14,7 @@ class StoriesController < ApplicationController
   end
              
   def index 
-    @stories = Story.all
+    @stories = Story.chrono.paginate(:page => params[:page])
   end
 
 end
