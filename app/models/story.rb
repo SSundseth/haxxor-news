@@ -7,6 +7,7 @@ class Story < ActiveRecord::Base
   scope :chrono, :order => "created_at DESC"
 
   belongs_to :user
+  has_many :comments
 
   def pretty_time
     diff_seconds = Time.now - self.created_at

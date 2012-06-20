@@ -5,8 +5,8 @@ class StoriesController < ApplicationController
   end
 
   def create
-    @story = Story.new(params[:story])
-    @story.user_id = clearance_session.current_user
+    @user = User.find(current_user.id)
+    @story = @user.stories.build(params[:story])
     if @story.save
       redirect_to stories_url
     else
@@ -16,6 +16,10 @@ class StoriesController < ApplicationController
              
   def index 
     @stories = Story.chrono.paginate(:page => params[:page])
+  end
+
+  def show
+    @story = Story.find(params[:id])
   end
 
 end

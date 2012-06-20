@@ -1,8 +1,9 @@
-<% Story.chrono.each do |story| %>
+<% @stories.chrono.each do |story| %>
 
   <div class="story">
-    <%= link_to story.title, story.url %> <span class="url"><%= "(" + story.url + ")" %></span>
+    <%= link_to story.title, story.url %>    
     <div class="info">
+      <%= link_to "comments", story_path(story) %>
       Submitted <%= story.pretty_time %> by <%= story.user.email %>
     </div>      
   </div>

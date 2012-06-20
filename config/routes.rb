@@ -1,5 +1,7 @@
 HaxxorNews::Application.routes.draw do
-  resources :stories
+  resources :stories do
+    resources :comments
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
