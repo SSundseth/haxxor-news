@@ -4,7 +4,7 @@
     <%= link_to story.title, story.url %>    
     <div class="info">
       <%= link_to "comments", story_path(story) %> | 
-      Submitted <%= story.pretty_time %> by <%= story.user.email %>
+      Submitted <%= pretty_time story.created_at %> by <%= story.user.email %>
     </div>      
   </div>
 <% end %>

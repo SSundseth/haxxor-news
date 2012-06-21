@@ -1,7 +1,8 @@
 <div class="comment">
   <div class="info">
-    <%= comment.user.email %> <%= comment.pretty_time %> 
+    <%= comment.user.email %> <%= pretty_time comment.created_at %> 
   </div>      
   <%= comment.body %>
+  <%= render :partial => "comments/comment", :object => Comment.find(params[:id]) %>
 </div>
 

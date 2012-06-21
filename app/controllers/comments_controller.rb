@@ -12,7 +12,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to story_path(@story)
     else
-      flash[:error] = 'Comment not saved'
+      flash[:error] = 'Comment cannot be blank'
+      redirect_to story_path(@story)
     end
   end
 

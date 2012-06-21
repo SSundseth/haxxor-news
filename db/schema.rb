@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(:version => 20120620150550) do
     t.text     "body"
     t.integer  "user_id"
     t.integer  "story_id"
-    t.integer  "parent_comment_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "parent_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "stories", :force => true do |t|
