@@ -15,4 +15,8 @@ module ApplicationHelper
         time.strftime("%m/%d/%Y")
     end
   end
+
+  def indented_render(num, *args)
+    render(*args).gsub(/^/, "\t" * num)
+  end
 end

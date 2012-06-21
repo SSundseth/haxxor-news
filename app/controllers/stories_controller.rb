@@ -7,6 +7,7 @@ class StoriesController < ApplicationController
   def create
     @user = User.find(current_user.id)
     @story = @user.stories.build(params[:story])
+
     if @story.save
       redirect_to stories_url
     else

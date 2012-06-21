@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration
       t.text :body
       t.integer :user_id
       t.integer :story_id
-      t.references :parent
+      t.references :parent_id
 
       t.timestamps
     end
