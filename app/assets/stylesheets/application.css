@@ -1,22 +1,16 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
- */
-
 body {
-  background-color:#99FFFF;
+  background-color:#EEE;
 }
 
-.head { 
+
+ul.comments {
+  list-style-type: none;
+  padding:0px;
+  margin: 0px;
+  font-size: 10pt
+}
+
+.header { 
   margin-left:50px;
   margin-right:50px;
   text-decoration:none; 
@@ -24,7 +18,7 @@ body {
   font-family:Courier, monospace;
 }
 
-.head a:link, a:visited {
+.header a:link, a:visited {
   text-decoration:none;
   color:#FF3300;
 }
@@ -45,7 +39,7 @@ body {
 }
 
 .content a:visited {
-  color:#922
+  color:#777
 }
 
 .story {
@@ -53,6 +47,7 @@ body {
 }
 
 .info {
+  color:#777;
   font-size:8pt;
 }
 
@@ -62,4 +57,10 @@ body {
 
 .url {
   font-size:8pt
+}
+
+.comment {
+  font-family: "Times",
+  font-size:8pt;
+  margin-bottom:5px
 }

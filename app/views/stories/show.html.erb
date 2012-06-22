@@ -1,0 +1,18 @@
+
+<div class="story">
+  <%= link_to @story.title, @story.url %>    
+  <div class="info">
+    Submitted <%= pretty_time @story.created_at %> by <%= @story.user.email %>
+  </div>      
+</div>
+
+<% if signed_in? %>
+  <%= render "comments/form" %>
+<% else %>
+    You must <%= link_to "Login", sign_in_path %> to comment
+<% end %>
+
+<h4> Comments </h4>
+<ul class="comments">
+  <%= render "comments/comment", :object => @comments.chrono %>
+</ul>
