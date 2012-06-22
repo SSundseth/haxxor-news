@@ -5,12 +5,10 @@ class Story < ActiveRecord::Base
   validates :url, 
             :format => { :with => /^(http:|https:)\/\/*/, 
             :message => "must begin with http:// or https://" }
- 
-  scope :chrono, :order => "created_at DESC"
 
   belongs_to :user
-  has_many :comments
+  has_many :comments, :as => :commentable
 
-
+  scope :chrono, :order => "created_at DESC"
 
 end

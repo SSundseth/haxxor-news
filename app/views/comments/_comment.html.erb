@@ -1,7 +1,14 @@
+<% for comment in object %>
 <div class="comment">
   <div class="info">
     <%= comment.user.email %> <%= pretty_time comment.created_at %> 
+    <%= link_to "reply", story_comment_path(@story, comment) %>
   </div>      
   <%= comment.body %>
+
+  <% if comment.comments.length > 0 %>
+    <%= render "comments/comment", :object => comment.comments.chrono %>
+  <% end %>
 </div>
+<% end %>
 

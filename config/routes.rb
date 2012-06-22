@@ -1,5 +1,12 @@
 HaxxorNews::Application.routes.draw do
+  resources :stories
+  resources :comments
+
   resources :stories do
+    resources :comments
+  end
+
+  resources :comments do
     resources :comments
   end
 

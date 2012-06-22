@@ -2,8 +2,13 @@
 
 FactoryGirl.define do
   factory :comment do
-    user_id 1
-    story_id 1
+    commentable { FactoryGirl.create(:story) }
     body "lol"
+    user { FactoryGirl.create(:user) }
+
+    factory :comment_child do
+      commentable { FactoryGirl.create(:comment) }
+    end
   end
+
 end

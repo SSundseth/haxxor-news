@@ -1,5 +1,5 @@
 <h4>Add a Comment:</h4>
-<%= form_for [@story, Comment.new] do |f| %>
+<%= form_for [@commentable, Comment.new] do |f| %>
   <%= f.text_area :body, :size => "50x10" %>
   <p>
     <%= f.submit "Post Comment" %>
