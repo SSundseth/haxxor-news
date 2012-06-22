@@ -13,4 +13,6 @@
 <% end %>
 
 <h4> Comments </h4>
-<%= render "comments/comment", :object => @comments.chrono %>
+<ul class="comments">
+  <%= render "comments/comment", :object => @comments.chrono %>
+</ul>
