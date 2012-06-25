@@ -2,7 +2,7 @@
   <li style="list-style-type:none">
     <div class="comment">
       <div class="info">
-        <%= comment.user.email %> <%= pretty_time comment.created_at %> 
+        <%= comment.user.email %> <%= time_ago_in_words(comment.created_at) %> ago |
         <% if signed_in? %>
           <%= link_to "reply", story_comment_path(@story, comment) %>
         <% end %>
