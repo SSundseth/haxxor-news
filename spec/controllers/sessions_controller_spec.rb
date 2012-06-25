@@ -12,6 +12,6 @@ describe Clearance::SessionsController do
 
   it 'authenticates' do
     user = FactoryGirl.create(:user)
-    User.authenticate("user@email.com", "pass").should_not be_nil
+    User.authenticate("user1@email.com", "pass").should_not be_nil
   end
 end

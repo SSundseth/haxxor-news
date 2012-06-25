@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'shoulda'
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -30,4 +31,19 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+end
+
+def sign_up_helper
+  visit "/"
+  click_link "Sign Up"
+  fill_in "Email", :with => "user@example.com"
+  fill_in "Password", :with => "pass"
+  click_button "Sign up"
+end
+
+def post_story
+  click_link "submit"
+  fill_in "Title", :with => "Google"
+  fill_in "Url", :with => "http://google.com"
+  click_button "Create"
 end

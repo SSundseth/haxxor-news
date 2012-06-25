@@ -7,6 +7,7 @@ describe Story do
   describe "validations" do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:url) }
+    it { should validate_presence_of(:user_id)  }
   end
 
   it 'should begin with http:// or http://' do
