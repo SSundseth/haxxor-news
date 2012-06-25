@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-  attr_accessible :url, :title
+  attr_accessible :url, :title, :score
 
   validates_presence_of :title, :url, :user_id
   validates :url, 
@@ -11,4 +11,23 @@ class Story < ActiveRecord::Base
 
   scope :chrono, :order => "created_at DESC"
 
+  def initialize
+    @score = 0
+  end
+
+  def comment_count
+    count = comments.length
+    comments.each do |c|
+      count += c.comment_count
+    end
+    count
+  end
+
+  def upvote
+    score += 1
+  end
+
+  def downvote
+    score -= 1
+  end
 end

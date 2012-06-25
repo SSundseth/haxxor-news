@@ -3,7 +3,8 @@
   <div class="story">
     <%= link_to story.title, story.url %>    
     <div class="info">
-      <%= link_to "comments", story_path(story) %> | 
+      <%= story.score %> points |
+      <%= link_to story.comment_count.to_s + " comments", story_path(story) %> |
       Submitted <%= pretty_time story.created_at %> by <%= story.user.email %>
     </div>      
   </div>

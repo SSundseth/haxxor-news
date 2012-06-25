@@ -14,19 +14,20 @@
 ActiveRecord::Schema.define(:version => 20120620150550) do
 
   create_table "comments", :force => true do |t|
-    t.text     "body"
+    t.text     "body",             :null => false
     t.integer  "user_id"
-    t.integer  "commentable"
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.integer  "score"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
 
   create_table "stories", :force => true do |t|
-    t.string   "title"
-    t.string   "url"
+    t.string   "title",      :null => false
+    t.string   "url",        :null => false
     t.integer  "user_id"
+    t.integer  "score"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

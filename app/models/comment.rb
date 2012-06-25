@@ -19,4 +19,11 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  def comment_count
+    count = comments.length
+    comments.each do |c|
+      count += c.comment_count
+    end
+    count
+  end
 end
