@@ -4,6 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :commentable
+  has_many :votes, :as => :votable
 
   validates :user_id, :presence => true
   validates :body, :presence => true
@@ -25,5 +26,13 @@ class Comment < ActiveRecord::Base
       count += c.comment_count
     end
     count
+  end
+
+  def total_score
+    score = 0
+    votes.each do |v|
+      score += v.score
+    end
+    score
   end
 end

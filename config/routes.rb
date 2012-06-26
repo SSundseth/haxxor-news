@@ -4,11 +4,14 @@ HaxxorNews::Application.routes.draw do
 
   resources :stories do
     resources :comments
+    post :upvote, :downvote
   end
 
   resources :comments do
     resources :comments
+    post :upvote, :downvote
   end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

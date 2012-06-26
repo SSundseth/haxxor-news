@@ -8,12 +8,9 @@ class Story < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments, :as => :commentable
+  has_many :votes, :as => :votable
 
   scope :chrono, :order => "created_at DESC"
-
-  def initialize
-    @score = 0
-  end
 
   def comment_count
     count = comments.length
@@ -23,11 +20,11 @@ class Story < ActiveRecord::Base
     count
   end
 
-  def upvote
-    score += 1
-  end
-
-  def downvote
-    score -= 1
+  def total_score
+    score = 0
+    votes.each do |v|
+      score += v.score
+    end
+    score
   end
 end

@@ -10,6 +10,10 @@ ul.comments {
   font-size: 10pt
 }
 
+hr.comm {
+  width: 100%;
+}
+
 .header { 
   margin-left:50px;
   margin-right:50px;
@@ -60,7 +64,13 @@ ul.comments {
 }
 
 .comment {
+  width: 400px;
   font-family: "Times",
   font-size:8pt;
-  margin-bottom:5px
+  padding-bottom:5px
+}
+
+.upvote {
+  height: 20px;
+  width: 10px:
 }

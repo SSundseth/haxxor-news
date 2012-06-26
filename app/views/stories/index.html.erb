@@ -1,13 +1,3 @@
-<% @stories.chrono.each do |story| %>
-
-  <div class="story">
-    <%= link_to story.title, story.url %>    
-    <div class="info">
-      <%= story.score %> points |
-      <%= link_to story.comment_count.to_s + " comments", story_path(story) %> |
-      Submitted <%= time_ago_in_words(story.created_at) %> ago by <%= story.user.email %>
-    </div>      
-  </div>
-<% end %>
+<%= render "stories/info", :object => @stories %>
 
 <%= will_paginate @stories %>

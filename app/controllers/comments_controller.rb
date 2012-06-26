@@ -23,6 +23,34 @@ class CommentsController < ApplicationController
     @commentable = @comment
   end
 
+
+  def upvote
+    @comment = Comment.find(params[:comment_id])
+
+    if Vote.exists?(:user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id)
+      Vote.find(:first, :conditions => { :user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id }).update_attributes(:score => 1)
+
+    else
+      @comment.votes.create(:score => 1, :user => current_user)
+    end
+
+    redirect_to :back
+  end
+ 
+
+  def downvote
+    @comment = Comment.find(params[:comment_id])
+
+    if Vote.exists?(:user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id)
+      Vote.find(:first, :conditions => { :user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id }).update_attributes(:score => -1)
+
+    else
+      @comment.votes.create(:score => -1, :user => current_user)
+    end
+
+    redirect_to :back
+  end
+
   private
   def find_commentable
     params.each do |name, value|

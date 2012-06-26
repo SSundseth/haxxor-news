@@ -1,12 +1,8 @@
 <% for comment in object %>
   <li style="list-style-type:none">
-    <div class="comment">
-      <div class="info">
-        <%= comment.user.email %> <%= time_ago_in_words(comment.created_at) %> ago |
-        <% if signed_in? %>
-          <%= link_to "reply", story_comment_path(@story, comment) %>
-        <% end %>
-      </div>      
+  <div class="comment">
+    <%= render "comments/info", :object => [comment] %>
+    <hr class="comm">
       <%= comment.body %>
 
       <% if comment.comments.length > 0 %>
