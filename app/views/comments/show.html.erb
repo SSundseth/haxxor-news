@@ -1,7 +1,5 @@
-<div class="comment">
-  <div class="info">
-    <%= @comment.user.email %> <%= pretty_time @comment.created_at %> 
-  </div>      
+<div class="showcomment">
+  <%= render "comments/info", :object => [@comment] %>
   <%= @comment.body %>
 </div>
 <%= render "comments/form" %>
