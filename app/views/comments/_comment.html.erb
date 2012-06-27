@@ -1,16 +1,42 @@
 <% for comment in object %>
   <li style="list-style-type:none">
   <div class="comment">
-    <%= render "comments/info", :object => [comment] %>
-    <hr class="comm">
-      <%= comment.body %>
+    <table>
+      <tr>
+        <td valign="top">      
+          <% if signed_in? %>
+            <div class="vote-buttons">
+              <table>
+                <tr>
+                  <td>
+                    <%= link_to image_tag("up.png", :size => "10x10"), comment_upvote_path(comment), :method => "post" %>
+                  </td>
+                </tr>
 
-      <% if comment.comments.length > 0 %>
-        <ul>
-          <%= render "comments/comment", :object => comment.comments.chrono %>
-        </ul>
-      <% end %>
-    </div>
+                <tr>
+                  <td>
+                    <%= link_to image_tag("down.png", :size => "10x10"), comment_downvote_path(comment), :method => "post" %>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          <% end %>
+        </td>
+
+        <td>
+          <%= render "comments/info", :object => [comment] %>
+          <hr class="comm">
+          <%= comment.body %>
+
+          <% if comment.comments.length > 0 %>
+            <ul>
+              <%= render "comments/comment", :object => comment.comments.chrono %>
+            </ul>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
   </li>
 <% end %>
 

@@ -1,13 +1,18 @@
 body {
-  background-color:#EEE;
+  background-color:#99DCDD;
 }
 
-
-ul.comments {
+ul {
   list-style-type: none;
   padding:0px;
   margin: 0px;
-  font-size: 10pt
+  font-size: 10pt;
+  text-indent: 0px;
+}
+
+li {
+  text-indent: 5px;
+  padding: 10px;
 }
 
 hr.comm {
@@ -18,23 +23,23 @@ hr.comm {
   margin-left:50px;
   margin-right:50px;
   text-decoration:none; 
-  background-color:#66CCFF;
-  font-family:Courier, monospace;
+  background-color:#303131;
+  font-family: "Open Sans", bold;
 }
 
 .header a:link, a:visited {
   text-decoration:none;
-  color:#FF3300;
+  color:#54E4EA;
 }
 
 .content {
   margin-left:100px;
-  font-family: 'Arial';
+  font-family: 'Open Sans';
   padding:10px
 }
 
 .content a:link {
-  color:#00F;
+  color:#264F51;
   text-decoration:none;
 }
 
@@ -43,16 +48,22 @@ hr.comm {
 }
 
 .content a:visited {
-  color:#777
+  color:#49B8BD;
 }
 
 .story {
-  padding:10px;
+  padding:0px;
 }
 
 .info {
   color:#777;
   font-size:8pt;
+}
+.info a:link {
+  color:#777;
+}
+.info a:visited {
+  color:#777;
 }
 
 .error {
@@ -63,14 +74,7 @@ hr.comm {
   font-size:8pt
 }
 
-.comment {
-  width: 400px;
-  font-family: "Times",
-  font-size:8pt;
-  padding-bottom:5px
+.showcomment {
+  font-size:10pt;
 }
 
-.upvote {
-  height: 20px;
-  width: 10px:
-}
