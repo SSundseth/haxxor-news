@@ -18,22 +18,25 @@ ActiveRecord::Schema.define(:version => 20120626134549) do
     t.integer  "user_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
-    t.integer  "score"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "stories", :force => true do |t|
     t.string   "title",      :null => false
     t.string   "url",        :null => false
     t.integer  "user_id"
-    t.integer  "score"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
+
   create_table "users", :force => true do |t|
-    t.string   "email"
+    t.string   "email",                             :null => false
     t.string   "encrypted_password", :limit => 128
     t.string   "salt",               :limit => 128
     t.string   "confirmation_token", :limit => 128
@@ -53,5 +56,8 @@ ActiveRecord::Schema.define(:version => 20120626134549) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["votable_id"], :name => "index_votes_on_votable_id"
 
 end
