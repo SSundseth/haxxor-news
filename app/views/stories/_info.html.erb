@@ -2,8 +2,10 @@
 <div class="story">
   <%= link_to story.title, story.url %>    
   <div class="info">
-    <%= link_to "Upvote", story_upvote_path(story), :method => "post" %>
-    <%= link_to "Downvote", story_downvote_path(story), :method => "post" %>
+    <% if signed_in? %>
+      <%= link_to "Upvote", story_upvote_path(story), :method => "post" %>
+      <%= link_to "Downvote", story_downvote_path(story), :method => "post" %>
+    <% end %>
     <%= story.total_score %> points |
     <%= link_to story.comment_count.to_s + " comments", story_path(story) %> |
     Submitted <%= time_ago_in_words(story.created_at) %> ago by <%= story.user.email %>

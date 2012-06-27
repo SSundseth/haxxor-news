@@ -1,14 +1,16 @@
 <% for comment in object %>
   <div class="info">
     <div class="vote"><table><tr>
+      <% if signed_in? %>
           <%= link_to image_tag("up.png", :size => "10x10"), comment_upvote_path(comment), :method => "post" %>
           </tr><tr>
           <%= link_to image_tag("down.png", :size => "10x10"), comment_downvote_path(comment), :method => "post" %>
+      <% end %>
       </tr></table></div>
     <%= comment.total_score %> points |
-    <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.email %> |
+    Submitted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.email %>
     <% if signed_in? %>
-      <%= link_to "reply", story_comment_path(comment.story, comment) %>
+      | <%= link_to "reply", story_comment_path(comment.story, comment) %>
     <% end %>
   </div>
 <% end %>

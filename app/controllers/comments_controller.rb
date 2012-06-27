@@ -1,8 +1,12 @@
 
 class CommentsController < ApplicationController
+
+  before_filter :find_comment_by_comment_id, :only => [:upvote, :downvote]
+
   def new
     @comment = Comment.new
   end
+
 
   def create
     @commentable = find_commentable
@@ -17,6 +21,7 @@ class CommentsController < ApplicationController
     end
   end
 
+
   def show
     @comment = Comment.find(params[:id])
     @comments = @comment.comments
@@ -25,11 +30,8 @@ class CommentsController < ApplicationController
 
 
   def upvote
-    @comment = Comment.find(params[:comment_id])
-
-    if Vote.exists?(:user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id)
-      Vote.find(:first, :conditions => { :user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id }).update_attributes(:score => 1)
-
+    if vote_exists?
+      update_vote(1)
     else
       @comment.votes.create(:score => 1, :user => current_user)
     end
@@ -39,11 +41,8 @@ class CommentsController < ApplicationController
  
 
   def downvote
-    @comment = Comment.find(params[:comment_id])
-
-    if Vote.exists?(:user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id)
-      Vote.find(:first, :conditions => { :user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id }).update_attributes(:score => -1)
-
+    if vote_exists?
+      update_vote(-1)
     else
       @comment.votes.create(:score => -1, :user => current_user)
     end
@@ -51,7 +50,19 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
+
+
   private
+
+  def vote_exists?
+    Vote.exists?(:user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id)
+  end
+
+  def update_vote(score)
+      Vote.find(:first, :conditions => { :user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id }).update_attributes(:score => score)
+  end
+
+
   def find_commentable
     params.each do |name, value|
       if name =~ /(.+)_id$/
@@ -59,6 +70,10 @@ class CommentsController < ApplicationController
       end
     end
     nil
+  end
+
+  def find_comment_by_comment_id
+    @comment = Comment.find(params[:comment_id])
   end
 
 end
