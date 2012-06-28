@@ -56,7 +56,7 @@ class StoriesController < ApplicationController
     end
 
     def vote_exists?
-      Vote.exists?(:user_id => current_user.id, :votable_type => "Story", :votable_id => @story.id)
+      @story.votes.find_by_user_id(current_user.id)
     end
 
     def update_vote(score)
