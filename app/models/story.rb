@@ -10,18 +10,18 @@ class Story < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :votes, :as => :votable, :dependent => :destroy
 
-  scope :display, lambda { |order|
-    case order
-    when "most_points_daily"
-      where("created_at >= ?", 1.day.ago).order("score DESC")
-    when "most_points_weekly"
-      where("created_at >= ?", 1.week.ago).order("score DESC")
-    when "most_points_monthly"
-      where("created_at >= ?", 1.month.ago).order("score DESC")
-    when "newest"
-      order("created_at DESC")
-    else
-      order("score DESC")
+  scope :order_choice, lambda { |story_order|
+    case story_order
+      when "most_points_daily"
+        where("created_at >= ?", 1.day.ago).order("score DESC")
+      when "most_points_weekly"
+        where("created_at >= ?", 1.week.ago).order("score DESC")
+      when "most_points_monthly"
+        where("created_at >= ?", 1.month.ago).order("score DESC")
+      when "newest"
+        order("created_at DESC")
+      else
+        order("score DESC")
     end
   }
   

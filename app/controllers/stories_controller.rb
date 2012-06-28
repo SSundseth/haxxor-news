@@ -18,7 +18,7 @@ class StoriesController < ApplicationController
   end
              
   def index 
-    @stories = Story.display(params[:order]).paginate(:page => params[:page])
+    @stories = Story.order_choice(params[:story_order]).paginate(:page => params[:page])
   end
 
   def show

@@ -11,10 +11,8 @@ HaxxorNews::Application.routes.draw do
     resources :comments
     post :upvote, :downvote
   end
- 
-  resource :session, :controller => "sessions"
-  
-  root :to => 'stories#index'
-  match "/:order", :to => "stories#index"
 
+  root :to => 'stories#index'
+  
+  match '/:story_order', :to => 'stories#index', :story_order => /daily|weekly|monthly|newest/
 end
