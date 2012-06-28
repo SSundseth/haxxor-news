@@ -15,5 +15,6 @@ HaxxorNews::Application.routes.draw do
   resource :session, :controller => "sessions"
   
   root :to => 'stories#index'
+  match "/:order", :to => "stories#index"
 
 end

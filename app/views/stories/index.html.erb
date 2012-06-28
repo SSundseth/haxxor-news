@@ -1,3 +1,24 @@
+<div class="displayopt">
+  <table>
+    <tr>
+      <td>
+        Most Popular
+        <ul class="topopt">
+          <li><a href="/daily">Today</a></li>
+          <li><a href="/weekly">This Week</a></li>
+          <li><a href="/monthly">This Month</a></li>
+          <li><%= link_to "All Time", root_path %></li>
+        </ul>
+      </td>
+
+      <td>
+        <a href="/newest">Newest</a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
 <%= render "stories/info", :object => @stories %>
 
 <%= will_paginate @stories %>
