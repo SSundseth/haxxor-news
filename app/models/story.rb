@@ -21,10 +21,6 @@ class Story < ActiveRecord::Base
   end
 
   def total_score
-    score = 0
-    votes.each do |v|
-      score += v.score
-    end
-    score
+    self.votes.upvotes.count - self.votes.downvotes.count
   end
 end

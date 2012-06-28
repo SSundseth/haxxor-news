@@ -9,4 +9,7 @@ class Vote < ActiveRecord::Base
   belongs_to :user
   belongs_to :votable, :polymorphic => true
 
+  scope :upvotes, where(:score => 1)
+  scope :downvotes, where(:score => -1)
+
 end
