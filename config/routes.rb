@@ -13,6 +13,4 @@ HaxxorNews::Application.routes.draw do
   end
 
   root :to => 'stories#index'
-  
-  match '/:story_order', :to => 'stories#index', :story_order => /daily|weekly|monthly|newest/
 end

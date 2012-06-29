@@ -10,20 +10,7 @@ class Story < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :votes, :as => :votable, :dependent => :destroy
 
-  scope :order_choice, lambda { |story_order|
-    case story_order
-      when "most_points_daily"
-        where("created_at >= ?", 1.day.ago).order("score DESC")
-      when "most_points_weekly"
-        where("created_at >= ?", 1.week.ago).order("score DESC")
-      when "most_points_monthly"
-        where("created_at >= ?", 1.month.ago).order("score DESC")
-      when "newest"
-        order("created_at DESC")
-      else
-        order("score DESC")
-    end
-  }
+  scope :since, lambda { |date| where("created_at >= ?", date) if date.present? }
   
   def comment_count
     count = comments.length

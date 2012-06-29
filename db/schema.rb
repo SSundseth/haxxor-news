@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20120626134549) do
     t.datetime "updated_at",                      :null => false
   end
 
-  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "stories", :force => true do |t|
@@ -60,6 +60,6 @@ ActiveRecord::Schema.define(:version => 20120626134549) do
   end
 
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
-  add_index "votes", ["votable_id"], :name => "index_votes_on_votable_id"
+  add_index "votes", ["votable_id", "votable_type"], :name => "index_votes_on_votable_id_and_votable_type"
 
 end

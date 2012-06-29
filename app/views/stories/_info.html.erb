@@ -25,8 +25,8 @@
         <td>
           <%= link_to story.title, story.url %>    
           <div class="info">
-            <%= story.score %> points |
-            <%= link_to story.comment_count.to_s + " comments", story_path(story) %> |
+            <%= pluralize(story.score, 'point') %> |
+            <%= link_to pluralize(story.comment_count.to_s, "comment"), story_path(story) %> |
             Submitted <%= time_ago_in_words(story.created_at) %> ago by <%= story.user.email %>
           </div>
         </td>

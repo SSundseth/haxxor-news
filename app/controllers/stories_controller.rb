@@ -18,7 +18,7 @@ class StoriesController < ApplicationController
   end
              
   def index 
-    @stories = Story.order_choice(params[:story_order]).paginate(:page => params[:page])
+    @stories = Story.since(params[:date]).order(set_order).paginate(:page => params[:page])
   end
 
   def show
@@ -61,5 +61,13 @@ class StoriesController < ApplicationController
 
     def update_vote(score)
       @story.votes.find_by_user_id(current_user.id).update_attributes(:score => score)
+    end
+
+    def set_order
+      if %w(score created_at).include?(params[:order])
+        "#{params[:order]} DESC"
+      else
+        'score DESC'
+      end
     end
 end
