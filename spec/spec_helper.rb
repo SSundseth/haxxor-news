@@ -47,3 +47,8 @@ def post_story
   fill_in "Url", :with => "http://google.com"
   click_button "Create"
 end
+
+def post_comment
+  fill_in "comment_body", :with => "This is a comment"
+  click_button "Post Comment"
+end

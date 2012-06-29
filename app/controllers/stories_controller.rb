@@ -1,5 +1,7 @@
 class StoriesController < ApplicationController
 
+  before_filter :find_by_story_id, :only => [:upvote, :downvote]
+
   def new
     @story = Story.new
   end
@@ -16,7 +18,7 @@ class StoriesController < ApplicationController
   end
              
   def index 
-    @stories = Story.chrono.paginate(:page => params[:page])
+    @stories = Story.order_choice(params[:story_order]).paginate(:page => params[:page])
   end
 
   def show
@@ -25,4 +27,39 @@ class StoriesController < ApplicationController
     @commentable = @story
   end
 
+  def upvote
+    if vote_exists?
+      update_vote(1)
+    else
+      @story.votes.create(:score => 1, :user => current_user)
+    end
+    @story.update_score
+    redirect_to :back
+  end
+ 
+
+  def downvote
+    if vote_exists?  
+      update_vote(-1)
+    else
+      @story.votes.create(:score => -1, :user => current_user)
+    end
+    @story.update_score
+    redirect_to :back
+  end
+
+
+
+  private
+    def find_by_story_id
+      @story = Story.find(params[:story_id])
+    end
+
+    def vote_exists?
+      @story.votes.find_by_user_id(current_user.id)
+    end
+
+    def update_vote(score)
+      @story.votes.find_by_user_id(current_user.id).update_attributes(:score => score)
+    end
 end

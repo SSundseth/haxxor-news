@@ -1,12 +1,26 @@
-<% @stories.chrono.each do |story| %>
+<div class="displayopt">
+  <table>
+    <tr>
+      <td>
+        <a onclick="showme('drop')">Most Popular</a>
+        <div id="drop" class="dropdown">
+          <ul class="opt">
+            <li><a href="/daily">Today</a></li>
+            <li><a href="/weekly">This Week</a></li>
+            <li><a href="/monthly">This Month</a></li>
+            <li><%= link_to "All Time", root_path %></li>
+          </ul>
+        </div>
+      </td>
 
-  <div class="story">
-    <%= link_to story.title, story.url %>    
-    <div class="info">
-      <%= link_to "comments", story_path(story) %> | 
-      Submitted <%= pretty_time story.created_at %> by <%= story.user.email %>
-    </div>      
-  </div>
-<% end %>
+      <td valign="top">
+        <a href="/newest">Newest</a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<%= render "stories/info", :object => @stories %>
 
 <%= will_paginate @stories %>
