@@ -1,0 +1,36 @@
+<% for story in object %>
+  <div class="story">
+    <table>
+      <tr>
+        <td>
+        <% if signed_in? %>
+          <div class="vote_buttons"> 
+            <table>
+              <tr>
+                <td>
+                  <%= link_to image_tag("up.png", :size => "10x10"), story_upvote_path(story), :method => "post" %>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <%= link_to image_tag("down.png", :size => "10x10"), story_downvote_path(story), :method => "post" %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        <% end %>
+        </td>
+
+        <td>
+          <%= link_to story.title, story.url %>    
+          <div class="info">
+            <%= story.total_score %> points |
+            <%= link_to story.comment_count.to_s + " comments", story_path(story) %> |
+            Submitted <%= time_ago_in_words(story.created_at) %> ago by <%= story.user.email %>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>

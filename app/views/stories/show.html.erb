@@ -1,10 +1,4 @@
-
-<div class="story">
-  <%= link_to @story.title, @story.url %>    
-  <div class="info">
-    Submitted <%= pretty_time @story.created_at %> by <%= @story.user.email %>
-  </div>      
-</div>
+<%= render "stories/info", :object => [@story] %>
 
 <% if signed_in? %>
   <%= render "comments/form" %>

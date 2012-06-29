@@ -2,6 +2,6 @@
 <%= form_for [@commentable, Comment.new] do |f| %>
   <%= f.text_area :body, :size => "50x10" %>
   <p>
-    <%= f.submit "Post Comment" %>
+  <%= f.submit "Post Comment" %>
   </p>
 <% end %>

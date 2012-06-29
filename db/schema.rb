@@ -11,28 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620150550) do
+ActiveRecord::Schema.define(:version => 20120626134549) do
 
   create_table "comments", :force => true do |t|
-    t.text     "body"
+    t.text     "body",             :null => false
     t.integer  "user_id"
-    t.integer  "commentable"
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "stories", :force => true do |t|
-    t.string   "title"
-    t.string   "url"
+    t.string   "title",      :null => false
+    t.string   "url",        :null => false
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
+
   create_table "users", :force => true do |t|
-    t.string   "email"
+    t.string   "email",                             :null => false
     t.string   "encrypted_password", :limit => 128
     t.string   "salt",               :limit => 128
     t.string   "confirmation_token", :limit => 128
@@ -43,5 +47,17 @@ ActiveRecord::Schema.define(:version => 20120620150550) do
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id",      :null => false
+    t.integer  "score",        :null => false
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["votable_id"], :name => "index_votes_on_votable_id"
 
 end
