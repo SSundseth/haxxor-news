@@ -14,23 +14,25 @@
 ActiveRecord::Schema.define(:version => 20120626134549) do
 
   create_table "comments", :force => true do |t|
-    t.text     "body",             :null => false
-    t.integer  "user_id"
+    t.text     "body",                            :null => false
+    t.integer  "user_id",                         :null => false
+    t.integer  "score",            :default => 0
     t.integer  "commentable_id"
     t.string   "commentable_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "stories", :force => true do |t|
-    t.string   "title",      :null => false
-    t.string   "url",        :null => false
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "title",                     :null => false
+    t.string   "url",                       :null => false
+    t.integer  "user_id",                   :null => false
+    t.integer  "score",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"

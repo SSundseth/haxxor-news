@@ -1,7 +1,8 @@
 <% for comment in object %>
   <div class="info">
-    <%= comment.total_score %> points |
-    <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.email %>
+    <%= comment.user.email %>
+    <%= comment.total_score %> points 
+    <%= time_ago_in_words(comment.created_at) %> ago
     <% if signed_in? %>
       | <%= link_to "reply", story_comment_path(comment.story, comment) %>
     <% end %>

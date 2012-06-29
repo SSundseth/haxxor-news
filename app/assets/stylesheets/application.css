@@ -10,6 +10,7 @@ ul {
   text-indent: 0px;
 }
 
+
 li {
   text-indent: 5px;
   padding: 10px;
@@ -76,5 +77,12 @@ hr.comm {
 
 .showcomment {
   font-size:10pt;
+}
+
+.dropdown { 
+  display:none;
+}
+.dropdown ul li {
+  padding-bottom: 0px;
 }
 
