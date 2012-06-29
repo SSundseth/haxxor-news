@@ -18,7 +18,7 @@ class StoriesController < ApplicationController
   end
              
   def index 
-    @stories = Story.chrono.paginate(:page => params[:page])
+    @stories = Story.since(params[:date]).order(set_order).paginate(:page => params[:page])
   end
 
   def show
@@ -33,7 +33,7 @@ class StoriesController < ApplicationController
     else
       @story.votes.create(:score => 1, :user => current_user)
     end
-
+    @story.update_score
     redirect_to :back
   end
  
@@ -44,7 +44,7 @@ class StoriesController < ApplicationController
     else
       @story.votes.create(:score => -1, :user => current_user)
     end
-
+    @story.update_score
     redirect_to :back
   end
 
@@ -56,10 +56,18 @@ class StoriesController < ApplicationController
     end
 
     def vote_exists?
-      Vote.exists?(:user_id => current_user.id, :votable_type => "Story", :votable_id => @story.id)
+      @story.votes.find_by_user_id(current_user.id)
     end
 
     def update_vote(score)
-      Vote.find(:first, :conditions => { :user_id => current_user.id, :votable_type => "Story", :votable_id => @story.id }).update_attributes(:score => score)
+      @story.votes.find_by_user_id(current_user.id).update_attributes(:score => score)
+    end
+
+    def set_order
+      if %w(score created_at).include?(params[:order])
+        "#{params[:order]} DESC"
+      else
+        'score DESC'
+      end
     end
 end

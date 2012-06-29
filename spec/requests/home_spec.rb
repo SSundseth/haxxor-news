@@ -6,10 +6,12 @@ describe "home" do
     visit "/"
   end
 
-  it "Has 'sign up' and 'login' links" do
+  it "Has links" do
     find_link("Sign Up").should be_visible
     find_link("Login").should be_visible
     find_link("Haxxor News").should be_visible
+    find_link("Newest").should be_visible
+    page.should have_content "Most Popular"
   end
 
   it "Lets a visitor sign up" do
@@ -31,4 +33,8 @@ describe "home" do
     current_path.should == "/session"
   end
 
+  it "lets a visitor sort stories" do
+    click_link "Newest"
+    current_path.should == "/newest"
+  end
 end
