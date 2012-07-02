@@ -25,7 +25,7 @@
           
           <td align="right">
             <%= link_to "submit", new_story_path %> |
-            (<%= current_user.karma %>) <%= current_user.email %> |
+            (<%= current_user.karma.to_s %>) <%= current_user.email %> |
             <%= link_to "Logout", sign_out_path, :method => :delete %>
           </td>
 
