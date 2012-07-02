@@ -11,9 +11,6 @@ HaxxorNews::Application.routes.draw do
     resources :comments
     post :upvote, :downvote
   end
- 
-  resource :session, :controller => "sessions"
-  
-  root :to => 'stories#index'
 
+  root :to => 'stories#index'
 end

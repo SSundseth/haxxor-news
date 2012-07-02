@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     else
       @comment.votes.create(:score => 1, :user => current_user)
     end
-
+    @comment.update_score
     redirect_to :back
   end
  
@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
     else
       @comment.votes.create(:score => -1, :user => current_user)
     end
-
+    @comment.update_score
     redirect_to :back
   end
 
@@ -55,7 +55,7 @@ class CommentsController < ApplicationController
   private
 
   def vote_exists?
-    Vote.exists?(:user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id)
+    @comment.votes.find_by_user_id(current_user.id)
   end
 
   def update_vote(score)

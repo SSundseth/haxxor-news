@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
 
   has_many :stories
   has_many :comments
+  
+  def karma
+    story_karma = self.stories.each.sum { |story| story.score }
+    comment_karma = self.comments.each.sum { |comment| comment.score }
+    story_karma + comment_karma
+  end
 end

@@ -3,3 +3,4 @@
   <%= @comment.body %>
 </div>
 <%= render "comments/form" %>
+<%= link_to "Return to Content", story_path(@comment.commentable) %>
