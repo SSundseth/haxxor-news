@@ -63,6 +63,8 @@ module HaxxorNews
         g.assets false
         g.helper false
     end
+
+    config.action_mailer.delivery_method = :smtp
   end
 end
 
