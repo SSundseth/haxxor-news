@@ -1,0 +1,16 @@
+<div class="displayopt">
+  <table>
+    <tr>
+      <td>
+        <a onclick="showme('drop')">Most Popular</a>
+        <div id="drop" class="dropdown" valign="bottom">
+          <ul class="opt">
+            <li><%= link_to 'Today', stories_path(:date => 1.day.ago) %></li>
+            <li><%= link_to 'This Week', stories_path(:date => 1.week.ago) %></li>
+            <li><%= link_to 'This Month', stories_path(:date => 1.month.ago) %></li>
+      <td valign="top">
+        <%= link_to 'Newest', stories_path(:order => 'created_at') %>
+      </td>
+    </tr>
+  </table>
+</div>
