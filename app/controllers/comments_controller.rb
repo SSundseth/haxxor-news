@@ -55,7 +55,7 @@ class CommentsController < ApplicationController
   private
 
   def vote_exists?
-    Vote.exists?(:user_id => current_user.id, :votable_type => "Comment", :votable_id => @comment.id)
+    @comment.votes.find_by_user_id(current_user.id)
   end
 
   def update_vote(score)

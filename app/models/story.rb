@@ -10,8 +10,8 @@ class Story < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :votes, :as => :votable, :dependent => :destroy
 
-  scope :chrono, :order => "created_at DESC"
-
+  scope :since, lambda { |date| where("created_at >= ?", date) if date.present? }
+  
   def comment_count
     count = comments.length
     comments.each do |c|
@@ -20,11 +20,8 @@ class Story < ActiveRecord::Base
     count
   end
 
-  def total_score
-    score = 0
-    votes.each do |v|
-      score += v.score
-    end
-    score
+  def update_score
+    score = self.votes.upvotes.count - self.votes.downvotes.count
+    self.update_attributes(:score => score)
   end
 end
