@@ -32,9 +32,4 @@ describe "home" do
     click_button "Sign in"
     current_path.should == "/session"
   end
-
-  it "lets a visitor sort stories" do
-    click_link "Newest"
-    current_path.should == "/newest"
-  end
 end

@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
 
   before_filter :find_by_story_id, :only => [:upvote, :downvote]
+  before_filter :store_return_to
 
   def new
     @story = Story.new
@@ -69,5 +70,9 @@ class StoriesController < ApplicationController
       else
         'score DESC'
       end
+    end
+
+    def store_return_to
+      session[:return_to] = request.url
     end
 end

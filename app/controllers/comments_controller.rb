@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     else
       @comment.votes.create(:score => 1, :user => current_user)
     end
-
+    @comment.update_score
     redirect_to :back
   end
  
@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
     else
       @comment.votes.create(:score => -1, :user => current_user)
     end
-
+    @comment.update_score
     redirect_to :back
   end
 

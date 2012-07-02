@@ -8,7 +8,7 @@ describe "vote" do
 
   it "lets a user vote on a story" do
     click_link "Up"
-    page.should have_content "1 points"
+    page.should have_content "1 point"
   end
 
   it "lets a user vote on a comment" do

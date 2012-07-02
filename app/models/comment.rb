@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :body, :commentable_id, :commentable_type
+  attr_accessible :body, :score, :commentable_id, :commentable_type
 
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
@@ -28,11 +28,8 @@ class Comment < ActiveRecord::Base
     count
   end
 
-  def total_score
-    score = 0
-    votes.each do |v|
-      score += v.score
-    end
-    score
+  def update_score
+    score = self.votes.upvotes.count - self.votes.downvotes.count
+    self.update_attributes(:score => score)
   end
 end
