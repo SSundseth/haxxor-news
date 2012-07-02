@@ -24,4 +24,8 @@ class Story < ActiveRecord::Base
     score = self.votes.upvotes.count - self.votes.downvotes.count
     self.update_attributes(:score => score)
   end
+
+  def shorten_url
+    url.sub(/(http|https):\/\//, "")
+  end
 end

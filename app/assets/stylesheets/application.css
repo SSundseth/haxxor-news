@@ -68,6 +68,11 @@ hr.comm {
   color:#777;
 }
 
+.shorturl {
+  font-size:8pt;
+  color: #333;
+}
+
 .error {
   color:red;
 }

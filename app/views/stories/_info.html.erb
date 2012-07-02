@@ -23,7 +23,7 @@
         </td>
 
         <td>
-          <%= link_to story.title, story.url %>    
+          <%= link_to story.title, story.url %> <span class="shorturl">(<%= story.shorten_url %>)</span>   
           <div class="info">
             <%= pluralize(story.score, 'point') %> |
             <%= link_to pluralize(story.comment_count.to_s, "comment"), story_path(story) %> |
