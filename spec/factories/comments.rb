@@ -2,12 +2,14 @@
 
 FactoryGirl.define do
   factory :comment do
-    commentable { FactoryGirl.create(:story) }
+    commentable { FactoryGirl.create(:top_comment) }
     body "lol"
     user { FactoryGirl.create(:user) }
 
-    factory :comment_child do
-      commentable { FactoryGirl.create(:comment) }
+    factory :top_comment do
+      commentable { FactoryGirl.create(:story) }
+      body "wut"
+      user { FactoryGirl.create(:user) }
     end
   end
 

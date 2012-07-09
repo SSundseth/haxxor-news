@@ -14,6 +14,11 @@ describe "home" do
     page.should have_content "Most Popular"
   end
 
+  it 'lets a user sort stories by date' do
+    click_link "Newest"
+    current_path.should == '/stories'
+  end
+
   it "Lets a visitor sign up" do
     click_link "Sign Up"
     current_path.should == "/sign_up"

@@ -13,6 +13,7 @@ group :production do
 end
 
 group :development, :test do
+  gem "simplecov", :require => false
   gem "rspec-rails"
   gem "capybara"
   gem "factory_girl_rails"

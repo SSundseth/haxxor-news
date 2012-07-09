@@ -1,4 +1,3 @@
-
 class CommentsController < ApplicationController
 
   before_filter :find_comment_by_comment_id, :only => [:upvote, :downvote]
@@ -17,7 +16,7 @@ class CommentsController < ApplicationController
       redirect_to story_path(@comment.story)
     else
       flash[:error] = "Comment cannot be blank"
-      render :new
+      redirect_to :back
     end
   end
 
