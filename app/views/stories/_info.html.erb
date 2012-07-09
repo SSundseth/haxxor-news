@@ -8,13 +8,21 @@
             <table>
               <tr>
                 <td>
-                  <%= link_to image_tag("up.png", :size => "10x10"), story_upvote_path(story), :method => "post" %>
+                  <% if current_user.has_voted?(story, 1) %>
+                    <%= link_to image_tag("uplight.png", :size => "10x10"), story_upvote_path(story), :method => "post" %>
+                  <% else %>
+                    <%= link_to image_tag("up.png", :size => "10x10"), story_upvote_path(story), :method => "post" %>
+                  <% end %>
                 </td>
               </tr>
 
               <tr>
                 <td>
-                  <%= link_to image_tag("down.png", :size => "10x10"), story_downvote_path(story), :method => "post" %>
+                  <% if current_user.has_voted?(story, -1) %>
+                    <%= link_to image_tag("downlight.png", :size => "10x10"), story_downvote_path(story), :method => "post" %>
+                  <% else %>
+                    <%= link_to image_tag("down.png", :size => "10x10"), story_downvote_path(story), :method => "post" %>
+                  <% end %>
                 </td>
               </tr>
             </table>
