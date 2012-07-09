@@ -16,4 +16,12 @@ describe "submit" do
     page.should have_content "Title"
     find_link("Title").should be_visible
   end
+
+  it 'does not post an invalid story' do
+    visit 'stories/new'
+    fill_in 'Title', :with => 'Title'
+    fill_in 'Url', :with => 'notvalid.com'
+    click_button "Create"
+    page.should have_content 'Url must begin with http:// or https://'
+  end
 end

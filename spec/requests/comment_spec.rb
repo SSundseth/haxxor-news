@@ -12,6 +12,11 @@ describe "comment" do
     post_comment
     page.should have_content "This is a comment"
   end
+  it 'does not post an invalid comment' do
+    click_link 'comments'
+    click_button "Post Comment"
+    page.should have_content "Comment cannot be blank"
+  end
 
   it 'lets a user reply to a comment' do
     click_link "comments"

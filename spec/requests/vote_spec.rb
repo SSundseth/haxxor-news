@@ -6,9 +6,24 @@ describe "vote" do
     post_story
   end
 
-  it "lets a user vote on a story" do
+  it "lets a user upvote a story" do
     click_link "Up"
     page.should have_content "1 point"
+  end
+  it 'lets a user downvote a story' do
+    click_link "Down"
+    page.should have_content '-1 points'
+  end
+  it 'lets a user update an upvote' do
+    click_link 'Up'
+    page.should have_content '1 point'
+    click_link 'Down'
+    page.should have_content '-1 points'
+  end
+  it 'lets a user update a downvote' do
+    click_link 'Down'
+    click_link 'Up'
+    page.should have_content '1 point'
   end
 
   it "lets a user vote on a comment" do
