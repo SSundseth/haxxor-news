@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
     comment_karma = self.comments.each.sum { |comment| comment.score }
     story_karma + comment_karma
   end
+
+  def has_voted?(votable, score)
+    Vote.exists?({:user_id => self.id, :votable_type => votable.class.name, :votable_id => votable.id, :score => score})
+  end
 end

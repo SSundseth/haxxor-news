@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
+  include VotableController
 
-  before_filter :find_by_story_id, :only => [:upvote, :downvote]
   before_filter :store_return_to
 
   def new
@@ -28,41 +28,8 @@ class StoriesController < ApplicationController
     @commentable = @story
   end
 
-  def upvote
-    if vote_exists?
-      update_vote(1)
-    else
-      @story.votes.create(:score => 1, :user => current_user)
-    end
-    @story.update_score
-    redirect_to :back
-  end
- 
-
-  def downvote
-    if vote_exists?  
-      update_vote(-1)
-    else
-      @story.votes.create(:score => -1, :user => current_user)
-    end
-    @story.update_score
-    redirect_to :back
-  end
-
-
 
   private
-    def find_by_story_id
-      @story = Story.find(params[:story_id])
-    end
-
-    def vote_exists?
-      @story.votes.find_by_user_id(current_user.id)
-    end
-
-    def update_vote(score)
-      @story.votes.find_by_user_id(current_user.id).update_attributes(:score => score)
-    end
 
     def set_order
       if %w(score created_at).include?(params[:order])
