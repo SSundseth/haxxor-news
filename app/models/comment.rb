@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
   include Votable
 
-  attr_accessible :body, :score, :commentable_id, :commentable_type
+  attr_accessible :body, :user_id, :score, :commentable_id, :commentable_type
 
   belongs_to :commentable, :polymorphic => true
 

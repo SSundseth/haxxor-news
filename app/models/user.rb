@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates :password, :presence => true
 
-  has_many :stories
-  has_many :comments
+  has_many :stories, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   
   def karma
     story_karma = self.stories.each.sum { |story| story.score }

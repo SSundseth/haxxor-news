@@ -2,23 +2,22 @@ module VotableController
   extend ActiveSupport::Concern
 
   def upvote
-    @object = find_object
-    if vote_exists?
-      update_vote(1)
-    else
-      @object.votes.create(:score => 1, :user => current_user)
-    end
-    @object.update_score
-    redirect_to :back
+    vote(1)
   end
  
 
   def downvote
+    vote(-1) 
+  end
+
+  private
+
+  def vote(val)
     @object = find_object
-    if vote_exists?  
-      update_vote(-1)
+    if vote_exists?
+      update_vote(val)
     else
-      @object.votes.create(:score => -1, :user => current_user)
+      @object.votes.create(:score => val, :user => current_user)
     end
     @object.update_score
     redirect_to :back
